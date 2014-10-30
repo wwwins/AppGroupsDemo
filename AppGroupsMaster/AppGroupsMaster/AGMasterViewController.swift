@@ -33,7 +33,7 @@ class AGMasterViewController: UIViewController {
     if let passData = textFieldForInput.text {
       myShareDefaults?.setValue(passData, forKey: "PassData")
       textViewForLog.text = textViewForLog.text + "Add:" + textFieldForInput.text + "\n"
-      
+      myShareDefaults?.synchronize()
     }
     
   }
