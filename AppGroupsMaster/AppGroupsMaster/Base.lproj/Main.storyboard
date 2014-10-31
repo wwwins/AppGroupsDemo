@@ -173,9 +173,9 @@
                                 <exclude reference="aHu-66-z3L"/>
                                 <exclude reference="fap-K1-1Nf"/>
                                 <exclude reference="kDq-wz-os1"/>
-                                <exclude reference="oo3-8d-qnL"/>
                                 <exclude reference="Ee4-s8-BNW"/>
                                 <exclude reference="I0W-oz-whc"/>
+                                <exclude reference="oo3-8d-qnL"/>
                                 <exclude reference="lcK-eh-CLe"/>
                                 <exclude reference="zJm-xs-pkZ"/>
                                 <exclude reference="M3t-XO-Cxf"/>
@@ -197,9 +197,9 @@
                                 <include reference="aHu-66-z3L"/>
                                 <include reference="fap-K1-1Nf"/>
                                 <include reference="kDq-wz-os1"/>
-                                <include reference="oo3-8d-qnL"/>
                                 <include reference="Ee4-s8-BNW"/>
                                 <include reference="I0W-oz-whc"/>
+                                <include reference="oo3-8d-qnL"/>
                                 <include reference="lcK-eh-CLe"/>
                                 <include reference="zJm-xs-pkZ"/>
                                 <include reference="M3t-XO-Cxf"/>

@@ -89,21 +89,44 @@
                                     </mask>
                                 </variation>
                             </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mo8-Oz-srk">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="4lO-3b-u2f"/>
+                                    <constraint firstAttribute="height" constant="265" id="eeg-Zy-Z4y"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4lO-3b-u2f"/>
+                                        <exclude reference="eeg-Zy-Z4y"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4lO-3b-u2f"/>
+                                        <include reference="eeg-Zy-Z4y"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="utT-TW-hL3" secondAttribute="centerX" id="3u5-bF-DRF"/>
                             <constraint firstItem="ADf-ub-OSl" firstAttribute="trailing" secondItem="utT-TW-hL3" secondAttribute="trailing" id="D5C-0t-Vv0"/>
+                            <constraint firstItem="Mo8-Oz-srk" firstAttribute="centerX" secondItem="ADf-ub-OSl" secondAttribute="centerX" id="M4j-NU-X8Z"/>
                             <constraint firstItem="W4W-HG-LjO" firstAttribute="top" secondItem="utT-TW-hL3" secondAttribute="bottom" constant="8" id="UGX-hs-qiU"/>
                             <constraint firstItem="ADf-ub-OSl" firstAttribute="top" secondItem="W4W-HG-LjO" secondAttribute="bottom" constant="8" id="Wys-aj-4Kh"/>
                             <constraint firstItem="W4W-HG-LjO" firstAttribute="trailing" secondItem="utT-TW-hL3" secondAttribute="trailing" id="Y8i-wJ-E4Q"/>
                             <constraint firstItem="utT-TW-hL3" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="hnN-1o-drb"/>
+                            <constraint firstItem="Mo8-Oz-srk" firstAttribute="top" secondItem="ADf-ub-OSl" secondAttribute="bottom" constant="8" id="w91-sV-ZpK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="utT-TW-hL3"/>
                                 <exclude reference="W4W-HG-LjO"/>
                                 <exclude reference="ADf-ub-OSl"/>
+                                <exclude reference="Mo8-Oz-srk"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="3u5-bF-DRF"/>
@@ -112,6 +135,8 @@
                                 <exclude reference="Y8i-wJ-E4Q"/>
                                 <exclude reference="D5C-0t-Vv0"/>
                                 <exclude reference="Wys-aj-4Kh"/>
+                                <exclude reference="M4j-NU-X8Z"/>
+                                <exclude reference="w91-sV-ZpK"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -119,6 +144,7 @@
                                 <include reference="utT-TW-hL3"/>
                                 <include reference="W4W-HG-LjO"/>
                                 <include reference="ADf-ub-OSl"/>
+                                <include reference="Mo8-Oz-srk"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="3u5-bF-DRF"/>
@@ -127,11 +153,14 @@
                                 <include reference="Y8i-wJ-E4Q"/>
                                 <include reference="D5C-0t-Vv0"/>
                                 <include reference="Wys-aj-4Kh"/>
+                                <include reference="M4j-NU-X8Z"/>
+                                <include reference="w91-sV-ZpK"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="buttonForShow" destination="W4W-HG-LjO" id="qpe-ps-HTr"/>
+                        <outlet property="imageView" destination="Mo8-Oz-srk" id="rGr-K2-8nJ"/>
                         <outlet property="textViewForLog" destination="ADf-ub-OSl" id="Efr-Id-AL1"/>
                     </connections>
                 </viewController>
