@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AGMasterViewController: UIViewController {
+class AGMasterViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
   @IBOutlet weak var textFieldForInput: UITextField!
   @IBOutlet weak var buttonForShow: UIButton!
@@ -20,6 +20,8 @@ class AGMasterViewController: UIViewController {
     static let FileName = "image01.png"
   }
   
+  var imagePickerController:UIImagePickerController!
+  
   override func viewDidLoad() {
       super.viewDidLoad()
 
@@ -30,7 +32,30 @@ class AGMasterViewController: UIViewController {
       super.didReceiveMemoryWarning()
       // Dispose of any resources that can be recreated.
   }
+  
+  // MARK:- Image picker controller
 
+  func isCameraAvailable() -> Bool {
+    if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)) {
+      return true
+    }
+    return false
+  }
+  
+  func initImagePickerController() {
+    if isCameraAvailable() {
+      if ((imagePickerController) == nil) {
+        imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = false
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.Camera)!
+      }
+    }
+  }
+  
+  // MARK:- Save a shared file
+  
   func saveShareFile(fileName:NSString, image:UIImage) -> Bool {
     var storeURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(Constants.AppGroupName)
     storeURL = storeURL?.URLByAppendingPathComponent(fileName)
@@ -40,6 +65,8 @@ class AGMasterViewController: UIViewController {
     return result
   }
   
+  // MARK:- Snapshot
+  
   func snapshot(view: UIView) -> UIImage {
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 0)
     view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
@@ -48,6 +75,8 @@ class AGMasterViewController: UIViewController {
     return image
   }
 
+  // MARK:- Actions
+  
   @IBAction func saveClicked(sender: AnyObject) {
     println("save clicked: \(textFieldForInput.text)")
     var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
@@ -71,6 +100,12 @@ class AGMasterViewController: UIViewController {
       textViewForLog.text = textViewForLog.text + "Result:" + stringInput + "\n"
     }
 
+  }
+  
+  @IBAction func captureClicked(sender: AnyObject) {
+    println("Capture")
+    initImagePickerController()
+    
   }
 
 }
