@@ -15,8 +15,10 @@ class AGMasterViewController: UIViewController {
   @IBOutlet weak var buttonForSave: UIButton!
   @IBOutlet weak var textViewForLog: UITextView!
   
-  let AppGroupName = "group.com.isobar.AppGroupsDemo"
-  let FileName = "image01.png"
+  struct Constants {
+    static let AppGroupName = "group.com.isobar.AppGroupsDemo"
+    static let FileName = "image01.png"
+  }
   
   override func viewDidLoad() {
       super.viewDidLoad()
@@ -30,7 +32,7 @@ class AGMasterViewController: UIViewController {
   }
 
   func saveShareFile(fileName:NSString, image:UIImage) -> Bool {
-    var storeURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(AppGroupName)
+    var storeURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(Constants.AppGroupName)
     storeURL = storeURL?.URLByAppendingPathComponent(fileName)
     println("storeURL:\(storeURL)")
     let imageData = UIImagePNGRepresentation(image)
@@ -48,14 +50,14 @@ class AGMasterViewController: UIViewController {
 
   @IBAction func saveClicked(sender: AnyObject) {
     println("save clicked: \(textFieldForInput.text)")
-    var myShareDefaults = NSUserDefaults(suiteName: AppGroupName)
+    var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
     if let passData = textFieldForInput.text {
       myShareDefaults?.setValue(passData, forKey: "PassData")
       textViewForLog.text = textViewForLog.text + "Add:" + textFieldForInput.text + "\n"
       myShareDefaults?.synchronize()
     }
     
-    if (saveShareFile(FileName, image: snapshot(self.view))) {
+    if (saveShareFile(Constants.FileName, image: snapshot(self.view))) {
       println("Success")
     }
     else {
@@ -64,7 +66,7 @@ class AGMasterViewController: UIViewController {
   }
   
   @IBAction func showClicked(sender: AnyObject) {
-    var myShareDefaults = NSUserDefaults(suiteName: AppGroupName)
+    var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
     if let stringInput = myShareDefaults?.stringForKey("PassData") {
       textViewForLog.text = textViewForLog.text + "Result:" + stringInput + "\n"
     }

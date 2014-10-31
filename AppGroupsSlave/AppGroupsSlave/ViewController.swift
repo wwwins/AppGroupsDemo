@@ -14,8 +14,10 @@ class ViewController: UIViewController {
   @IBOutlet weak var textViewForLog: UITextView!
   @IBOutlet weak var imageView: UIImageView!
   
-  let AppGroupName = "group.com.isobar.AppGroupsDemo"
-  let FileName = "image01.png"
+  struct Constants {
+    static let AppGroupName = "group.com.isobar.AppGroupsDemo"
+    static let FileName = "image01.png"
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,7 +25,7 @@ class ViewController: UIViewController {
   }
 
   func loadShareFile(fileName:NSString) -> UIImage? {
-    let containerURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(AppGroupName)
+    let containerURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(Constants.AppGroupName)
     let loadURL = containerURL?.path?.stringByAppendingPathComponent(fileName)
     if let image = UIImage(contentsOfFile: loadURL!) {
       return image
@@ -37,11 +39,11 @@ class ViewController: UIViewController {
   }
 
   @IBAction func showClicked(sender: AnyObject) {
-    var myShareDefaults = NSUserDefaults(suiteName: AppGroupName)
+    var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
     if let passData = myShareDefaults?.stringForKey("PassData") {
       textViewForLog.text = textViewForLog.text + passData + "\n"
     }
-    if let sharedImage = loadShareFile(FileName) as UIImage? {
+    if let sharedImage = loadShareFile(Constants.FileName) as UIImage? {
       imageView.image = sharedImage
     }
   }
