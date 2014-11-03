@@ -61,13 +61,29 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   
   func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
     imageView.image = image
-    saveShareFile(Constants.FileNameForPicker, image: image)
+    image.imageOrientation
+    saveShareFile(Constants.FileNameForPicker, image: fixOrientation(image))
     self.dismissViewControllerAnimated(true, completion: nil)
     
   }
   
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
     println("Cancel!!")
+  }
+  
+  // MARK:- Fix image Orientation
+  
+  func fixOrientation(image:UIImage) -> UIImage {
+    if (image.imageOrientation == UIImageOrientation.Up) {
+      return image;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
+    image.drawInRect(CGRectMake(0, 0, image.size.width, image.size.height))
+    let image = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return image
+    
   }
   
   // MARK:- Save a shared file
