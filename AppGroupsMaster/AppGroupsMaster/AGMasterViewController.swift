@@ -14,10 +14,12 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   @IBOutlet weak var buttonForShow: UIButton!
   @IBOutlet weak var buttonForSave: UIButton!
   @IBOutlet weak var textViewForLog: UITextView!
+  @IBOutlet weak var imageView: UIImageView!
   
   struct Constants {
     static let AppGroupName = "group.com.isobar.AppGroupsDemo"
     static let FileName = "image01.png"
+    static let FileNameForPicker = "image02.png"
   }
   
   var imagePickerController:UIImagePickerController!
@@ -49,9 +51,23 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = false
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
+//        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         imagePickerController.mediaTypes = UIImagePickerController.availableMediaTypesForSourceType(UIImagePickerControllerSourceType.Camera)!
       }
     }
+  }
+  
+  // MARK:- Delegate
+  
+  func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    imageView.image = image
+    saveShareFile(Constants.FileNameForPicker, image: image)
+    self.dismissViewControllerAnimated(true, completion: nil)
+    
+  }
+  
+  func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    println("Cancel!!")
   }
   
   // MARK:- Save a shared file
@@ -105,6 +121,10 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   @IBAction func captureClicked(sender: AnyObject) {
     println("Capture")
     initImagePickerController()
+    self.presentViewController(imagePickerController, animated: true, completion: {
+      println("Completion")
+      
+    })
     
   }
 

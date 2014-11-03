@@ -17,6 +17,7 @@ class ViewController: UIViewController {
   struct Constants {
     static let AppGroupName = "group.com.isobar.AppGroupsDemo"
     static let FileName = "image01.png"
+    static let FileNameForPicker = "image02.png"
   }
 
   override func viewDidLoad() {
@@ -43,7 +44,7 @@ class ViewController: UIViewController {
     if let passData = myShareDefaults?.stringForKey("PassData") {
       textViewForLog.text = textViewForLog.text + passData + "\n"
     }
-    if let sharedImage = loadShareFile(Constants.FileName) as UIImage? {
+    if let sharedImage = loadShareFile(Constants.FileNameForPicker) as UIImage? {
       imageView.image = sharedImage
     }
   }
