@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     if let passData = myShareDefaults?.stringForKey("PassData") {
       textViewForLog.text = textViewForLog.text + passData + "\n"
     }
-    if let sharedImage = loadShareFile(Constants.FileNameForPicker) as UIImage? {
+    if let sharedImage = loadShareFile(Constants.FileName) as UIImage? {
       imageView.image = sharedImage
     }
   }
