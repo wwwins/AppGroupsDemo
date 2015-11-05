@@ -30,7 +30,7 @@ class ShowPhotoViewController: UIViewController {
   
     func loadShareFile(fileName:NSString) -> UIImage? {
       let containerURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(ViewController.Constants.AppGroupName)
-      let loadURL = containerURL?.path?.stringByAppendingPathComponent(fileName)
+      let loadURL = containerURL?.path?.stringByAppendingPathComponent(fileName as String)
       if let image = UIImage(contentsOfFile: loadURL!) {
         return image
       }

@@ -68,7 +68,7 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   }
   
   func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    println("Cancel!!")
+    print("Cancel!!")
   }
   
   // MARK:- Fix image Orientation
@@ -90,8 +90,8 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   
   func saveShareFile(fileName:NSString, image:UIImage) -> Bool {
     var storeURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(Constants.AppGroupName)
-    storeURL = storeURL?.URLByAppendingPathComponent(fileName)
-    println("storeURL:\(storeURL)")
+    storeURL = storeURL?.URLByAppendingPathComponent(fileName as String)
+    print("storeURL:\(storeURL)")
     let imageData = UIImagePNGRepresentation(image)
     let result = imageData.writeToURL(storeURL!, atomically: true)
     return result
@@ -110,7 +110,7 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   // MARK:- Actions
   
   @IBAction func saveClicked(sender: AnyObject) {
-    println("save clicked: \(textFieldForInput.text)")
+    print("save clicked: \(textFieldForInput.text)")
     var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
     if let passData = textFieldForInput.text {
       myShareDefaults?.setValue(passData, forKey: "PassData")
@@ -119,15 +119,15 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     if (saveShareFile(Constants.FileName, image: snapshot(self.view))) {
-      println("Success")
+      print("Success")
     }
     else {
-      println("Failure")
+      print("Failure")
     }
   }
   
   @IBAction func showClicked(sender: AnyObject) {
-    var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
+    let myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
     if let stringInput = myShareDefaults?.stringForKey("PassData") {
       textViewForLog.text = textViewForLog.text + "Result:" + stringInput + "\n"
     }
@@ -135,10 +135,10 @@ class AGMasterViewController: UIViewController, UINavigationControllerDelegate, 
   }
   
   @IBAction func captureClicked(sender: AnyObject) {
-    println("Capture")
+    print("Capture")
     initImagePickerController()
     self.presentViewController(imagePickerController, animated: true, completion: {
-      println("Completion")
+      print("Completion")
       
     })
     

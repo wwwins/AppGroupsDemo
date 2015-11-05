@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 
   func loadShareFile(fileName:NSString) -> UIImage? {
     let containerURL = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(Constants.AppGroupName)
-    let loadURL = containerURL?.path?.stringByAppendingPathComponent(fileName)
+    let loadURL = containerURL?.path?.stringByAppendingPathComponent(fileName as String)
     if let image = UIImage(contentsOfFile: loadURL!) {
       return image
     }
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
   }
 
   @IBAction func showClicked(sender: AnyObject) {
-    var myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
+    let myShareDefaults = NSUserDefaults(suiteName: Constants.AppGroupName)
     if let passData = myShareDefaults?.stringForKey("PassData") {
       textViewForLog.text = textViewForLog.text + passData + "\n"
     }
